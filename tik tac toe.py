@@ -6,7 +6,7 @@ random.seed(2357864)
 for times in range(0,random.randint(0,50)):
     random.seed(random.randint(0,500))
 
-def __find(self, value):
+def __find(self, value): #moved over to class
     #defines base location
     index = [0]
     #checks if for value through normal index
@@ -29,7 +29,7 @@ def __find(self, value):
 # wanted to add method to list obj, but py does not support adding methods
 # to py objs list.find = find
 
-def create_board_of_size(size):
+def create_board_of_size(size): #moved over to class
     board = []
     #create rows
     for rows in range(0,size):
@@ -40,7 +40,7 @@ def create_board_of_size(size):
     #sends back finished board
     return(board)
 
-def print_board(board):
+def print_board(board): #moved over to class
     #itterate through rows
     for row in range(0,len(board)):
         #itterate through col
@@ -52,7 +52,7 @@ def print_board(board):
                 print("|", end = "")
         print()
 
-def win_condition_values(size):
+def win_condition_values(size): #moved over to class
     #to check in if a player wins, every time a player places their symbol in a row/col/diagonal
     #it will add(plaer1) or remove(player2) from the value or that row/col/diangonal
     #if the absolute value of a row/col/diagonal exceeds the length of the board,
@@ -72,12 +72,12 @@ def win_condition_values(size):
     win_skeleton = [board_rows,board_cols,board_diagonals]
     return(win_skeleton)
 
-def DEBUG_FUNC_show_win_cond(win_skeleton,size):
+def DEBUG_FUNC_show_win_cond(win_skeleton,size): #moved over to class
     # shows the values of each row/col/diagonal
     # dia 1 row 1-size
     # col 1-9(\n) dia 2
-    board_rows = win_skeleton[0]
-    board_cols = win_skeleton[1]
+    board_rows = win_skeleton[1]
+    board_cols = win_skeleton[0]
     #flip for looks and debugging
     board_rows = board_rows#[::-1]
     board_cols = board_cols#[::-1]
@@ -93,7 +93,7 @@ def DEBUG_FUNC_show_win_cond(win_skeleton,size):
             print(board_cols[cols], end = "")
     print(f'{board_diagonals[1]:>{size * 2}}')
 
-def __edit_win_cond(location, player,win_cond, size):
+def __edit_win_cond(location, player,win_cond, size): #moved over to class
     #setting the score to add depending on whos turn it is
     if player == 1:
         score = 1
@@ -119,7 +119,7 @@ def __edit_win_cond(location, player,win_cond, size):
     win_cond = [vb_rows,vb_cols,vb_diagonals]
     return(win_cond)
 
-def get_int(arg,arg2):
+def get_int(arg,arg2): #moved over to class
     getting_int = True
     while getting_int:
         try:
@@ -128,7 +128,7 @@ def get_int(arg,arg2):
         except:
             print(arg2)
 
-def __get_cp_pos(size,win_cond,board):
+def __get_cp_pos(size,win_cond,board): #moved over to class
 
     #sends back a random position if the player is not close to winning
     if __find(win_cond,size-1) == 'False' and __find(win_cond,1-size) == 'False':
@@ -187,7 +187,7 @@ def __get_cp_pos(size,win_cond,board):
         #board[row][col]
 
 
-def edit_board(board, player, size, win_cond):
+def edit_board(board, player, size, win_cond): # moved over to class
     edditing_board = True
     while edditing_board:
 
@@ -217,7 +217,7 @@ def edit_board(board, player, size, win_cond):
             if player == 1:
                 print('Please choose a valid location.')
             
-def check_win(win_cond, size):
+def check_win(win_cond, size): #moved to class
     #see if any symbol goes from one side of the board to the other, and if so returns true
     if __find(win_cond,size) != 'False':
         return(True)
@@ -226,7 +226,7 @@ def check_win(win_cond, size):
     else:
         return(False)
 
-def check_tie(board,size):
+def check_tie(board,size): #moved to class
     #runs through every playable move, and returns false if it finds a valid move, else returns there is a tie if there are no playable moves
     for cell in range(0,(size * size)):
         if __find(board,cell) != 'False':
@@ -271,6 +271,12 @@ def run_game(size,board,win_cond,show_win_cond):
             print("It's a tie!!")
             print_board(board)
             running = False
+
+
+
+
+
+
 show_win_cond = False
 playing = True
 while playing:
@@ -279,8 +285,8 @@ while playing:
     board = []
     win_cond = []
     #asks if the player would like to see how the win codition skeleton is working
-    #if input('Show win condition skeleton? y/n? ') == 'y':
-        #show_win_cond = True
+    if input('Show win condition skeleton? y/n? ') == 'y':
+        show_win_cond = True
     run_game(size,board,win_cond,show_win_cond)
     #asks if the player wants to play again
     exit_game = input('Play again? y/n ')
