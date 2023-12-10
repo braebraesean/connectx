@@ -74,6 +74,7 @@ class connect_x_board():
                 #print board with padding 
                 print(f'{connectx.board[row][col]:<2}', end = "")
                 #print borders
+
                 if col != (len(connectx.board[row]) - 1):
                     print("|", end = "")
             print(board_str)
@@ -276,7 +277,7 @@ class connect_x_board():
                 print("It's a tie!!")
                 running = False
 
-#creates connectx obj
+#creates the game obj
 def create_game():
     game = connect_x_board()
     game.size = game.get_int('How large would you like the board? ','Please enter a valid number.')
